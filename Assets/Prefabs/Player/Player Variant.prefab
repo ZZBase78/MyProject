@@ -93,6 +93,36 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &2811280028380880920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8655521845677256738}
+  m_Layer: 0
+  m_Name: MineSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8655521845677256738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2811280028380880920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6355004807731324790}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4649888869058862424
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +590,7 @@ MonoBehaviour:
   bullet_prefab: {fileID: 8290599411085303956, guid: 71a4e1cba0d884143b1ab2e25519d0a6, type: 3}
   spot_light: {fileID: 2435322721156295418}
   spot_light_audio: {fileID: 3366224011560186990}
+  mine_spawn: {fileID: 8655521845677256738}
 --- !u!114 &4323796268498390696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,6 +674,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4020635983719518126, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735458336080615708, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
+      propertyPath: m_Interpolate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8301805798673423562, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}

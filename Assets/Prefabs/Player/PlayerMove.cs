@@ -26,6 +26,10 @@ public class PlayerMove : MonoBehaviour
 
     public AudioSource spot_light_audio;
 
+    public Transform mine_spawn;
+
+    bool _mine;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -47,6 +51,10 @@ public class PlayerMove : MonoBehaviour
             spot_light.SetActive(!spot_light.activeSelf);
             spot_light_audio.Play();
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            _mine = true;
+        }
     }
 
     void Fire()
@@ -54,6 +62,15 @@ public class PlayerMove : MonoBehaviour
         _fire = false;
         Instantiate(bullet_prefab, bullet_spawn.transform.position, bullet_spawn.transform.rotation);
         shoot_audio.Play();
+    }
+    void Mine()
+    {
+        _mine = false;
+        GameObject go = Instantiate(Global.prefabs[8], mine_spawn.position, Quaternion.identity);
+        Rigidbody _go_rb = go.GetComponent<Rigidbody>();
+        Mine _go_mine = go.GetComponent<Mine>();
+        _go_mine.ChangeStatus(global::Mine.Status.PrepareToArm);
+        _go_rb.AddForce(mine_spawn.forward * 100);
     }
 
     private void FixedUpdate()
@@ -64,5 +81,6 @@ public class PlayerMove : MonoBehaviour
         if (_rb.velocity.magnitude > 1 * (doublespeed ? 3 : 1)) _rb.velocity = _rb.velocity.normalized * (doublespeed ? 3 : 1);
 
         if (_fire) Fire();
+        if (_mine) Mine();
     }
 }

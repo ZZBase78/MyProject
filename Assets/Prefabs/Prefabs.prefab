@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 4851969480208848617, guid: 231ead8f7e8c84548ba2bb19b88f0842, type: 3}
   - {fileID: 5504016654188238365, guid: bf005d9b60eca974384111799ee20a3f, type: 3}
   - {fileID: 1797412006006746414, guid: a344d93130fa63b4b929cd277f23f536, type: 3}
+  - {fileID: 4437356968361418783, guid: 17eaf6fb0f098c04d995a8d343f5cefb, type: 3}
   textures:
   - {fileID: 2800000, guid: b9d972fd76f5ca84d8472ef1e3488382, type: 3}
   - {fileID: 2800000, guid: 1fe172354d4df8e45bf81c650862bd97, type: 3}
