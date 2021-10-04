@@ -1,15 +1,8 @@
 
-<<<<<<< Updated upstream
 === Wed Sep 29 21:59:41 2021
 
 Packages were changed.
 Update Mode: mergeDefaultDependencies
-=======
-=== Mon Oct  4 22:57:53 2021
-
-Packages were changed.
-Update Mode: resetToDefaultDependencies
->>>>>>> Stashed changes
 
 The following packages were added:
   com.unity.collab-proxy@1.9.0
