@@ -4,6 +4,14 @@ using UnityEngine;
 
 public static class World
 {
+    public static void PlayClip(Transform transform, int clip_index)
+    {
+        GameObject go = GameObject.Instantiate(Global.prefabs[11], transform.position, Quaternion.identity, transform);//audio source
+        AudioSource _audio = go.GetComponent<AudioSource>();
+        _audio.clip = Global.clips[clip_index];
+        _audio.Play();
+        GameObject.Destroy(go, _audio.clip.length * 2);
+    }
 
     public static MapPoint GetMapPosition(Vector3 position)
     {

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
+
+    public Transform[] damage_points;
 
     Rigidbody _rb;
 
@@ -14,6 +16,22 @@ public class Enemy : MonoBehaviour
     bool rotating;
 
     public float speed = 50;
+
+    public void SetDamage(Vector3 from_position, float damage)
+    {
+        foreach(Transform damage_point in damage_points)
+        {
+            if (damage_point == null) continue; // не ясно, как может выполянтся метод setdamage если нет damage_point, видимо объект был уничтожен, как тогда выполняется скрипт
+            Vector3 _dir = from_position - damage_point.position;
+            if (Physics.Raycast(damage_point.position, _dir, out RaycastHit hitInfo, _dir.magnitude))
+            {
+                if (Mathf.Abs(hitInfo.distance - _dir.magnitude) <= 0.20f)
+                {
+                    Destroy(gameObject); return;
+                }
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -111,5 +129,11 @@ public class Enemy : MonoBehaviour
             moving = false;
             rotating = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Global.enemies.Remove(this);
+        Destroy(this);
     }
 }

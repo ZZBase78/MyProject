@@ -53,6 +53,14 @@ MonoBehaviour:
   - {fileID: 5504016654188238365, guid: bf005d9b60eca974384111799ee20a3f, type: 3}
   - {fileID: 1797412006006746414, guid: a344d93130fa63b4b929cd277f23f536, type: 3}
   - {fileID: 4437356968361418783, guid: 17eaf6fb0f098c04d995a8d343f5cefb, type: 3}
+  - {fileID: 4296285636875960536, guid: 818afbb2422b1b54fa95f928135a17ac, type: 3}
+  - {fileID: 7490043821377911552, guid: b63f02f70face304dbdf7aeff030a0f0, type: 3}
+  - {fileID: 1044495312011988935, guid: cc55a8da574d07f4abcf49079ddb4129, type: 3}
   textures:
   - {fileID: 2800000, guid: b9d972fd76f5ca84d8472ef1e3488382, type: 3}
   - {fileID: 2800000, guid: 1fe172354d4df8e45bf81c650862bd97, type: 3}
+  clips:
+  - {fileID: 8300000, guid: ddc123bdd4136ac4ea662df4620e1242, type: 3}
+  - {fileID: 8300000, guid: 2e2d99a5cb9226545929eecabd5b66b7, type: 3}
+  - {fileID: 8300000, guid: 735e08d5a4092a642bf1fc966575415d, type: 3}
+  - {fileID: 8300000, guid: 2119fc70d8380984cbe41da3541860f7, type: 3}

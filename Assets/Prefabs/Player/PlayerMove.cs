@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IDamagable
 {
 
     Rigidbody _rb;
@@ -29,6 +29,11 @@ public class PlayerMove : MonoBehaviour
     public Transform mine_spawn;
 
     bool _mine;
+
+    public void SetDamage(Vector3 from_position, float damage)
+    {
+        //Debug.Log("Damage: " + damage);
+    }
 
     private void Start()
     {

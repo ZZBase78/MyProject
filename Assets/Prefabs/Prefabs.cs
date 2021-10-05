@@ -9,10 +9,13 @@ public class Prefabs : MyRoot
 
     public Texture[] textures;
 
+    public AudioClip[] clips;
+
     void Awake()
     {
         Global.prefabs = prefabs;
         Global.textures = textures;
+        Global.clips = clips;
     }
 
     // Start is called before the first frame update

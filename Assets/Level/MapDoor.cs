@@ -6,6 +6,8 @@ public class MapDoor
 {
     public int door_id = 0;
 
+    public bool open;
+
     public MapDoor coonecting_door;
 
     public DoorUp door_up;
@@ -15,11 +17,17 @@ public class MapDoor
 
     public int direction_door; // 0 - up, 1 - right, 2 - down, 3 - left
 
+    public void SetOpen(bool new_open)
+    {
+        open = new_open;
+        if (coonecting_door != null) coonecting_door.open = new_open;
+    }
     public MapDoor(int x, int y, int direction)
     {
         this.x = x;
         this.y = y;
         this.direction_door = direction;
+        this.open = false;
     }
 
     public static void GetDoorsPairLeftRight(int x1, int x2, int y, int index, out MapDoor mapDoor1, out MapDoor mapDoor2)

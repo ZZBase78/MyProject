@@ -20,8 +20,32 @@ public static class Global
 
     public static Texture[] textures;
 
+    public static List<MapKey> mapKeys;
+    public static List<MapKey> collectKeys;
+    public static List<MapKey> usedKeys;
+
+    public static AudioClip[] clips;
+
     public static bool IsInterval(int value, int min, int max)
     {
         return ((value >= min) && (value <= max));
+    }
+
+    public static bool KeyPreset(int x, int y)
+    {
+        foreach (MapKey mapKey in mapKeys)
+        {
+            if (mapKey.x == x && mapKey.y == y) return true;
+        }
+        return false;
+    }
+
+    public static MapKey GetCollectKey(int key_id)
+    {
+        foreach (MapKey mapKey in collectKeys)
+        {
+            if (mapKey.key_id == key_id) return mapKey;
+        }
+        return null;
     }
 }

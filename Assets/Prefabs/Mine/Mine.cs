@@ -8,10 +8,11 @@ public class Mine : MonoBehaviour
     public enum Status { Off, Safe, PrepareToArm, Armed, PrepareToBoom }
 
     AudioSource _audio;
+    public AudioSource _audio2;
     public AudioClip clip_prepareToArm;
     public AudioClip clip_prepareToBoom;
-    public AudioClip clip_Boom;
     public AudioClip clip_BompArmed;
+    public AudioClip clip_BombFall;
 
     public Light spot1;
     public Light spot2;
@@ -25,6 +26,8 @@ public class Mine : MonoBehaviour
 
     Color[] prepared_colors;
     int current_color;
+
+    public MineDamageDetector mineDamageDetector;
 
     public void ChangeStatus(Status new_status)
     {
@@ -193,7 +196,34 @@ public class Mine : MonoBehaviour
 
     void Boom()
     {
-        _audio.clip = clip_Boom;
-        _audio.Play();
+        Instantiate(Global.prefabs[9], transform.position, Quaternion.identity); //Boom audio
+
+
+        foreach (IDamagable i in mineDamageDetector.list)
+        {
+            if (i != null && transform != null) i.SetDamage(transform.position, 1000);
+        }
+
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            if (!_audio2.isPlaying)
+            {
+                _audio2.clip = clip_BombFall;
+                _audio2.Play();
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((status == Status.Armed) && (other.CompareTag("Enemy") || other.CompareTag("Player")))
+        {
+            ChangeStatus(Status.PrepareToBoom);
+        }
     }
 }

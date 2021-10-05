@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
 
+    bool onoff;
+
     public List<GameObject> enemy_prefabs;
 
     public int MaxEnemy = 10;
@@ -12,6 +14,7 @@ public class EnemySpawn : MonoBehaviour
     private void Awake()
     {
         Global.enemies = new List<Enemy>();
+        onoff = true;
     }
 
     void SpawnEnemy()
@@ -33,6 +36,10 @@ public class EnemySpawn : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Global.enemies.Count < MaxEnemy) SpawnEnemy();
+        if (onoff)
+        {
+            if (Global.enemies.Count < MaxEnemy) SpawnEnemy(); else onoff = false; //если всех заспавнили, прекращаем спавн
+        }
+        
     }
 }

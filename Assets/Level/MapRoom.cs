@@ -158,7 +158,7 @@ public class MapRoom
                     Vector3 lamp_position = World.GetCellPosition(x, y);
                     lamp_position.y = 3; // высота потолка
 
-                    GameObject.Instantiate(lamp, lamp_position, Quaternion.Euler(180, 0, 0));
+                    GameObject.Instantiate(lamp, lamp_position, Quaternion.Euler(180, 0, 0), level.transform);
 
                 }
 

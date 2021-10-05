@@ -151,6 +151,11 @@ public class WorldGenerator : MyRoot
         Global.startRoom.Instantiate(level);
         Global.endRoom.Instantiate(level);
 
+        foreach(MapKey mapKey in Global.mapKeys)
+        {
+            mapKey.Instantiate();
+        }
+
         //prize
         GameObject.Instantiate(Global.prefabs[7], World.GetCellPosition(end_x, Settings.MapHeight), Quaternion.identity);
 
@@ -163,13 +168,19 @@ public class WorldGenerator : MyRoot
     void Generate_Doors()
     {
         Global.mapDoors = new List<MapDoor>();
+        Global.mapKeys = new List<MapKey>();
+        Global.collectKeys = new List<MapKey>();
+        Global.usedKeys = new List<MapKey>();
+        MapKey mapKey;
 
         int total_rooms = Global.mapRooms.Count;
 
         int index = 1; // счетчик индексов объектов дверей и комнат
 
-        //Первая дверь на входе
+        //Первая дверь на входе? всегда открытая
         MapDoor.GetDoorsPairUpDown(Global.startRoom.x1, 0, -1, index, out MapDoor mapDoor1, out MapDoor mapDoor2);
+        mapDoor1.open = true;
+        mapDoor2.open = true;
         index++;
         Global.map[Global.startRoom.x1, 0].mapRoom.room_id = index;
         Global.map[Global.startRoom.x1, 0].mapRoom.mapDoors.Add(mapDoor1);
@@ -219,7 +230,12 @@ public class WorldGenerator : MyRoot
             {
                 MapDoor.GetDoorsPairUpDown(x1, y2, y1, index, out mapDoor1, out mapDoor2);
             }
-            
+
+            //Генерим ключ для данной двери
+            mapKey = new MapKey();
+            mapKey.Generate(index);
+            Global.mapKeys.Add(mapKey);
+
             index++;
             if (Global.map[x1, y1].mapRoom.room_id == 0) Global.map[x1, y1].mapRoom.room_id = index;
             if (Global.map[x2, y2].mapRoom.room_id == 0) Global.map[x2, y2].mapRoom.room_id = index;
@@ -229,8 +245,14 @@ public class WorldGenerator : MyRoot
 
         }
 
+
         //Дверь на выход
         MapDoor.GetDoorsPairUpDown(Global.endRoom.x1, Settings.MapHeight, Settings.MapHeight - 1, index, out mapDoor1, out mapDoor2);
+        //Генерим ключ для данной двери
+        mapKey = new MapKey();
+        mapKey.Generate(index);
+        Global.mapKeys.Add(mapKey);
+
         index++;
         Global.map[Global.endRoom.x1, Settings.MapHeight - 1].mapRoom.room_id = index;
         Global.map[Global.endRoom.x1, Settings.MapHeight - 1].mapRoom.mapDoors.Add(mapDoor2);
