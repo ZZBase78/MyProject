@@ -13,6 +13,12 @@ public static class World
         GameObject.Destroy(go, _audio.clip.length * 2);
     }
 
+    public static void PlayClip(AudioSource _audio, AudioClip _clip)
+    {
+        _audio.clip = _clip;
+        _audio.Play();
+    }
+
     public static MapPoint GetMapPosition(Vector3 position)
     {
         int x = (int)Mathf.Round(position.x / Settings.CellWidth);

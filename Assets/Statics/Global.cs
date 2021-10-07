@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class Global
 {
+
+    public static List<MapTurrel> mapTurrels;
+
     public static MapPoint[,] map;
 
     public static List<MapRoom> mapRooms;
@@ -36,6 +39,15 @@ public static class Global
         foreach (MapKey mapKey in mapKeys)
         {
             if (mapKey.x == x && mapKey.y == y) return true;
+        }
+        return false;
+    }
+
+    public static bool TurrelPreset(int x, int y)
+    {
+        foreach (MapTurrel mapturrel in mapTurrels)
+        {
+            if (mapturrel.x == x && mapturrel.y == y) return true;
         }
         return false;
     }

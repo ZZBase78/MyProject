@@ -83,7 +83,7 @@ public class WorldGenerator : MyRoot
     // Start is called before the first frame update
     void Start()
     {
-
+        Global.mapTurrels = new List<MapTurrel>();
         Global.mapRooms = new List<MapRoom>();
 
         NewMap();
@@ -154,6 +154,21 @@ public class WorldGenerator : MyRoot
         foreach(MapKey mapKey in Global.mapKeys)
         {
             mapKey.Instantiate();
+        }
+
+        //MapTurrel mapTurrel = new MapTurrel();
+        //mapTurrel.x = start_x;
+        //mapTurrel.y = 0;
+        //mapTurrel.Instantiate();
+
+        for (int i = 0; i <= Global.mapRooms.Count; i++)
+        {
+            MapTurrel mapTurrel = new MapTurrel();
+            if (mapTurrel.GenerateCoordinates())
+            {
+                Global.mapTurrels.Add(mapTurrel);
+                mapTurrel.Instantiate();
+            }
         }
 
         //prize
