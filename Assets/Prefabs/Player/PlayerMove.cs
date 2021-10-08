@@ -30,6 +30,9 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     bool _mine;
 
+    bool _jump;
+    float jumpforce;
+
     public void SetDamage(Vector3 from_position, float damage)
     {
         //Debug.Log("Damage: " + damage);
@@ -60,6 +63,11 @@ public class PlayerMove : MonoBehaviour, IDamagable
         {
             _mine = true;
         }
+        if (Input.GetKeyDown(KeyCode.Space) && !_jump)
+        {
+            _jump = true;
+            jumpforce = 3;
+        }
     }
 
     void Fire()
@@ -78,14 +86,28 @@ public class PlayerMove : MonoBehaviour, IDamagable
         _go_rb.AddForce(mine_spawn.forward * 100);
     }
 
+    void Jump()
+    {
+        jumpforce -= Time.fixedDeltaTime * 4f;
+        if (jumpforce <= 0)
+        {
+            _jump = false;
+        }
+    }
+
     private void FixedUpdate()
     {
-        Vector3 direction = new Vector3(_direction_x, 0, _direction_z);
+        //Vector3 direction = new Vector3(_direction_x, 0, _direction_z);
 
-        _rb.AddRelativeForce(direction * speed);
-        if (_rb.velocity.magnitude > 1 * (doublespeed ? 3 : 1)) _rb.velocity = _rb.velocity.normalized * (doublespeed ? 3 : 1);
+        //_rb.AddRelativeForce(direction * speed);
+        //if (_rb.velocity.magnitude > 1 * (doublespeed ? 3 : 1)) _rb.velocity = _rb.velocity.normalized * (doublespeed ? 3 : 1);
+        Vector3 direction = new Vector3(_direction_x, 0, _direction_z) * (doublespeed ? 3 : 1);
+        direction += Vector3.up * jumpforce;
+        transform.Translate(direction * 0.05f);
+        //transform.position = transform.position + direction * 0.05f;
 
         if (_fire) Fire();
         if (_mine) Mine();
+        if (_jump) Jump();
     }
 }
