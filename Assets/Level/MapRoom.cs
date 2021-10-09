@@ -72,6 +72,8 @@ public class MapRoom
             interior = RoomInteriors.GetRandom();
         }
 
+        bool is_start_room = (this == Global.startRoom);
+
         GameObject _temp_go;
 
         GameObject wall = Global.prefabs[0]; // wall
@@ -83,7 +85,7 @@ public class MapRoom
             {
                 mapDoorUp.Instantiate(level, interior);
             }
-            else
+            else if (!is_start_room)
             {
                 _temp_go = GameObject.Instantiate(wall, World.GetCellUpCenterPosition(x, y2), World.UpQuaternion(), level.transform);
                 _temp_go.GetComponent<WallUp>().texture_id = interior.wall;
@@ -99,7 +101,7 @@ public class MapRoom
             {
                 mapDoorDown.Instantiate(level, interior);
             }
-            else
+            else if (!is_start_room)
             {
                 _temp_go = GameObject.Instantiate(wall, World.GetCellDownCenterPosition(x, y1), World.DownQuaternion(), level.transform);
                 _temp_go.GetComponent<WallUp>().texture_id = interior.wall;
@@ -114,7 +116,7 @@ public class MapRoom
             {
                 mapDoorLeft.Instantiate(level, interior);
             }
-            else
+            else if (!is_start_room)
             {
                 _temp_go = GameObject.Instantiate(wall, World.GetCellLeftCenterPosition(x1, y), World.LeftQuaternion(), level.transform);
                 _temp_go.GetComponent<WallUp>().texture_id = interior.wall;
@@ -129,30 +131,33 @@ public class MapRoom
             {
                 mapDoorRight.Instantiate(level, interior);
             }
-            else
+            else if (!is_start_room)
             {
                 _temp_go = GameObject.Instantiate(wall, World.GetCellRightCenterPosition(x2, y), World.RightQuaternion(), level.transform);
                 _temp_go.GetComponent<WallUp>().texture_id = interior.wall;
             }
         }
 
-        GameObject floor = Global.prefabs[2]; // floor
-        GameObject go = GameObject.Instantiate(floor, new Vector3((((float)x1 + x2) / 2) * Settings.CellWidth, 0,(((float)y1 + y2) / 2) * Settings.CellHeight), Quaternion.identity, level.transform);
-        Floor floor_copm = go.GetComponent<Floor>();
-        floor_copm.floor.transform.localScale = new Vector3((Mathf.Abs(x1 - x2) + 1) * Settings.CellWidth, floor_copm.floor.transform.localScale.y, (Mathf.Abs(y1 - y2) + 1) * Settings.CellHeight);
-        floor_copm.floor_txture_id = interior.floor;
+        if (!is_start_room)
+        {
+            GameObject floor = Global.prefabs[2]; // floor
+            GameObject go = GameObject.Instantiate(floor, new Vector3((((float)x1 + x2) / 2) * Settings.CellWidth, 0, (((float)y1 + y2) / 2) * Settings.CellHeight), Quaternion.identity, level.transform);
+            Floor floor_copm = go.GetComponent<Floor>();
+            floor_copm.floor.transform.localScale = new Vector3((Mathf.Abs(x1 - x2) + 1) * Settings.CellWidth, floor_copm.floor.transform.localScale.y, (Mathf.Abs(y1 - y2) + 1) * Settings.CellHeight);
+            floor_copm.floor_txture_id = interior.floor;
 
-        GameObject roof = Global.prefabs[5]; // roof
-        go = GameObject.Instantiate(roof, new Vector3((((float)x1 + x2) / 2) * Settings.CellWidth, 3, (((float)y1 + y2) / 2) * Settings.CellHeight), Quaternion.identity, level.transform);
-        Roof roof_copm = go.GetComponent<Roof>();
-        roof_copm.roof.transform.localScale = new Vector3((Mathf.Abs(x1 - x2) + 1) * Settings.CellWidth, floor_copm.floor.transform.localScale.y, (Mathf.Abs(y1 - y2) + 1) * Settings.CellHeight);
-        roof_copm.roof_txture_id = interior.floor;
+            GameObject roof = Global.prefabs[5]; // roof
+            go = GameObject.Instantiate(roof, new Vector3((((float)x1 + x2) / 2) * Settings.CellWidth, 3, (((float)y1 + y2) / 2) * Settings.CellHeight), Quaternion.identity, level.transform);
+            Roof roof_copm = go.GetComponent<Roof>();
+            roof_copm.roof.transform.localScale = new Vector3((Mathf.Abs(x1 - x2) + 1) * Settings.CellWidth, floor_copm.floor.transform.localScale.y, (Mathf.Abs(y1 - y2) + 1) * Settings.CellHeight);
+            roof_copm.roof_txture_id = interior.floor;
+        }
 
         for (int x = x1; x <= x2; x++)
         {
             for (int y = y1; y <= y2; y++)
             {
-                if (Random.Range(0,3) <= 5) // пока все присутствуют
+                if ( (!is_start_room) && Random.Range(0,3) <= 5) // пока все присутствуют
                 {
                     GameObject lamp = Global.prefabs[6]; // lamp
                     Vector3 lamp_position = World.GetCellPosition(x, y);

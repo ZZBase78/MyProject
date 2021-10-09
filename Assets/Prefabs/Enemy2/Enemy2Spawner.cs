@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy2Spawner : MonoBehaviour
 {
 
+    bool on;
+
     int enemy_count;
     int max_enemy;
 
@@ -30,7 +32,8 @@ public class Enemy2Spawner : MonoBehaviour
     {
         Global.enemy2Spawner = this;
         current_index_spawn = 0;
-        max_enemy = 10;
+        max_enemy = 100;
+        on = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,10 @@ public class Enemy2Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy_count < max_enemy) InstantiateEnemy();
+        if (on && enemy_count < max_enemy) InstantiateEnemy();
+        if (Global.player != null && Global.player.transform.position.z > -6) // проверка что игрок дошел до входной двери
+        {
+            on = false;
+        }
     }
 }

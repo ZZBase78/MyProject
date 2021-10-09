@@ -38,6 +38,10 @@ public class PlayerMove : MonoBehaviour, IDamagable
         //Debug.Log("Damage: " + damage);
     }
 
+    private void Awake()
+    {
+        Global.player = gameObject;
+    }
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();

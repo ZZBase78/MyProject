@@ -21,6 +21,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     public void SetDamage(Vector3 form_position, Vector3 to_position, float damage)
     {
+        if (gameObject == null) return;
         //Vector3 direction = (to_position - form_position).normalized;
         //_rb.AddForce(direction * damage, ForceMode.Impulse);
         currenthealth = currenthealth - 200;
@@ -82,6 +83,13 @@ public class Enemy2 : MonoBehaviour, IDamagable
         agent.SetDestination(patrolpoint[indexpatrolpoint]);
     }
 
+    void NavigateToPlayer()
+    {
+        if (Global.player == null) return; // игрока нет на сцене
+        Vector3 destination = Global.player.transform.position - transform.position;
+        if (destination.magnitude > 10f) return; // расстояние до игрока более 10м
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -90,5 +98,12 @@ public class Enemy2 : MonoBehaviour, IDamagable
             indexpatrolpoint = (indexpatrolpoint + 1) % patrolpoint.Length;
             agent.SetDestination(patrolpoint[indexpatrolpoint]);
         }
+
+        NavigateToPlayer();
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(this);
     }
 }

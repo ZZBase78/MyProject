@@ -201,7 +201,10 @@ public class Mine : MonoBehaviour
 
         foreach (IDamagable i in mineDamageDetector.list)
         {
-            if (i != null && transform != null) i.SetDamage(transform.position, Vector3.zero, 1000);
+            if ((i != null) && (transform != null) && (i.ToString() != "null"))
+            {
+                i.SetDamage(transform.position, Vector3.zero, 1000);
+            }
         }
 
         Destroy(gameObject);

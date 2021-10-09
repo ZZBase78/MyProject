@@ -33,6 +33,8 @@ public static class Global
 
     public static Enemy2Spawner enemy2Spawner;
 
+    public static GameObject player;
+
     public static bool IsInterval(int value, int min, int max)
     {
         return ((value >= min) && (value <= max));
