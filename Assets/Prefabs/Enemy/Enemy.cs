@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public float speed = 50;
 
-    public void SetDamage(Vector3 from_position, float damage)
+    public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
         foreach(Transform damage_point in damage_points)
         {

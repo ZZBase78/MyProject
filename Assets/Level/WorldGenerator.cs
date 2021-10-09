@@ -83,6 +83,8 @@ public class WorldGenerator : MyRoot
     // Start is called before the first frame update
     void Start()
     {
+        Global.Enemy2_killed = 0;
+
         Global.mapTurrels = new List<MapTurrel>();
         Global.mapRooms = new List<MapRoom>();
 
@@ -177,7 +179,9 @@ public class WorldGenerator : MyRoot
         GameObject.Instantiate(Global.prefabs[4]); // enemy spawn
 
         //GameObject.Instantiate(Global.prefabs[3], World.GetCellPosition(Global.startRoom.x1, Global.startRoom.y1), Quaternion.identity); // player
-        GameObject.Instantiate(Global.prefabs[3], new Vector3(15f, 0, -60f), Quaternion.identity); // player
+        GameObject.Instantiate(Global.prefabs[3], new Vector3(1f, 0, -60f), Quaternion.identity); // player
+
+        GameObject.Instantiate(Global.prefabs[13]); // enemy 2 spawner
 
     }
 

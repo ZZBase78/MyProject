@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour, IDamagable
     bool _jump;
     float jumpforce;
 
-    public void SetDamage(Vector3 from_position, float damage)
+    public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
         //Debug.Log("Damage: " + damage);
     }
@@ -73,8 +73,22 @@ public class PlayerMove : MonoBehaviour, IDamagable
     void Fire()
     {
         _fire = false;
-        Instantiate(bullet_prefab, bullet_spawn.transform.position, bullet_spawn.transform.rotation);
+        //Instantiate(bullet_prefab, bullet_spawn.transform.position, bullet_spawn.transform.rotation);
         shoot_audio.Play();
+
+        if (Physics.Raycast(bullet_spawn.transform.position, bullet_spawn.transform.forward, out RaycastHit hitinfo, 100f))
+        {
+            IDamagable i = hitinfo.transform.GetComponentInParent<IDamagable>();
+            if (i != null)
+            {
+                //Debug.Log("Попал" + hitinfo.transform);
+                i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 10f);
+            }
+            else
+            {
+                //Debug.Log("Не Попал");
+            }
+        }
     }
     void Mine()
     {

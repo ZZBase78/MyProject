@@ -721,6 +721,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4339291706250538950, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6735458336080615708, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
       propertyPath: m_Interpolate
       value: 0
@@ -728,6 +732,10 @@ PrefabInstance:
     - target: {fileID: 8301805798673423562, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
       propertyPath: m_Name
       value: Player Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301805798673423562, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8301805798673423562, guid: 4725ca6bfb6e7cf4fab6bbdcf399499c, type: 3}
       propertyPath: m_TagString

@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4059c5ddb0316944f993308874d00b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capsula_renderer: {fileID: 5056079791269747641}
+  patrolpoint: []
+  indexpatrolpoint: 0
 --- !u!195 &4236272066869071537
 NavMeshAgent:
   m_ObjectHideFlags: 0

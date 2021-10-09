@@ -29,6 +29,10 @@ public static class Global
 
     public static AudioClip[] clips;
 
+    public static int Enemy2_killed;
+
+    public static Enemy2Spawner enemy2Spawner;
+
     public static bool IsInterval(int value, int min, int max)
     {
         return ((value >= min) && (value <= max));

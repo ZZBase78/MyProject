@@ -3,14 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy2 : MonoBehaviour, IDamagable
 {
+
+    int maxhealth = 255;
+    int currenthealth;
+
+    public MeshRenderer capsula_renderer;
 
     public Vector3[] patrolpoint;
 
     public int indexpatrolpoint;
 
     NavMeshAgent agent;
+
+    //Rigidbody _rb;
+
+    public void SetDamage(Vector3 form_position, Vector3 to_position, float damage)
+    {
+        //Vector3 direction = (to_position - form_position).normalized;
+        //_rb.AddForce(direction * damage, ForceMode.Impulse);
+        currenthealth = currenthealth - 200;
+        if (currenthealth < 0) currenthealth = 0;
+        capsula_renderer.material.color = new Color(((float)maxhealth - currenthealth) / 255, (float)currenthealth / 255, (float)currenthealth / 255);
+        if (currenthealth == 0)
+        {
+            Global.enemy2Spawner.Destroy_Enemy(gameObject);
+            Global.Enemy2_killed++;
+            Destroy(this);
+        }
+    }
 
     public Vector3 GetRandomPoint()
     {
@@ -34,7 +56,9 @@ public class Enemy2 : MonoBehaviour
 
     private void Awake()
     {
+        currenthealth = maxhealth;
         agent = GetComponent<NavMeshAgent>();
+        //_rb = GetComponent<Rigidbody>();
     }
     // Start is called before the first frame update
     void Start()
