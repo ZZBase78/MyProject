@@ -12,7 +12,7 @@ public class Lamp : MonoBehaviour
 
     AudioSource player;
 
-    int mode; //0 - –аботает посто€нно, 1 - работает с перебо€ми, 2 - в основном не работает, 3 - Ќе работает
+    public int mode; //0 - –аботает посто€нно, 1 - работает с перебо€ми, 2 - в основном не работает, 3 - Ќе работает
 
     // Start is called before the first frame update
     void Start()

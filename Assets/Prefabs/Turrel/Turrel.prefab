@@ -1089,6 +1089,7 @@ MonoBehaviour:
   endposition: {fileID: 7788250239125242056}
   _audio: {fileID: 7788250239746135558}
   _clip: {fileID: 8300000, guid: 61b83608b3f42a34ba128aab302c9c6a, type: 3}
+  gun_point: {fileID: 7788250239343080267}
 --- !u!1 &7788250239573392138
 GameObject:
   m_ObjectHideFlags: 0

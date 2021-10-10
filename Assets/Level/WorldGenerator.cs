@@ -83,6 +83,10 @@ public class WorldGenerator : MyRoot
     // Start is called before the first frame update
     void Start()
     {
+        Global.lamps = new List<GameObject>();
+
+
+
         Global.Enemy2_killed = 0;
 
         Global.mapTurrels = new List<MapTurrel>();

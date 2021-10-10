@@ -34,8 +34,31 @@ public static class Global
     public static Enemy2Spawner enemy2Spawner;
 
     public static GameObject player;
+    public static PlayerMove player_script;
+
+    public static List<GameObject> lamps;
+
+    public static void SelAllLampOn()
+    {
+        if (lamps == null) return;
+        foreach (GameObject lamp_go in lamps)
+        {
+            Lamp lamp_script = lamp_go.GetComponent<Lamp>();
+            if (lamp_script != null)
+            {
+                lamp_script.mode = 0;
+                lamp_script.go_light.GetComponent<Light>().intensity = 1;
+                lamp_script.go_light.SetActive(true);
+                lamp_script.go_spotlight.SetActive(true);
+            }
+        }
+    }
 
     public static bool IsInterval(int value, int min, int max)
+    {
+        return ((value >= min) && (value <= max));
+    }
+    public static bool IsInterval(float value, float min, float max)
     {
         return ((value >= min) && (value <= max));
     }

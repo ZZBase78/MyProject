@@ -19,6 +19,8 @@ public class TurrelFireControl : MonoBehaviour
     public AudioSource _audio;
     public AudioClip _clip;
 
+    public GameObject gun_point;
+
     public void Fire(Vector3 target)
     {
         if (smallGun.transform.position == startposition.transform.position)
@@ -28,6 +30,22 @@ public class TurrelFireControl : MonoBehaviour
             World.PlayClip(_audio, _clip);
             smallGun.transform.position = endposition.transform.position;
             gun_interpolate_pos = 0;
+
+            bool obstacle_found = false;
+            Vector3 player_direction = Global.player.transform.position - gun_point.transform.position;
+            RaycastHit[] hits = Physics.RaycastAll(gun_point.transform.position, gun_point.transform.forward, player_direction.magnitude);
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.transform.tag == "Enemy") continue;
+                if (hit.transform.tag == "Player") continue;
+                if (hit.transform.tag == "Turrel") continue;
+                obstacle_found = true;
+                break;
+            }
+            if (!obstacle_found)
+            {
+                Global.player_script.SetDamage(gun_point.transform.position, Global.player.transform.position, 1f);
+            }
         }
     }
 

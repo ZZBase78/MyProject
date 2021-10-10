@@ -33,14 +33,19 @@ public class PlayerMove : MonoBehaviour, IDamagable
     bool _jump;
     float jumpforce;
 
+    public int health;
+
     public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
-        //Debug.Log("Damage: " + damage);
+        health = health - (int)damage;
     }
 
     private void Awake()
     {
+        health = 1000;
         Global.player = gameObject;
+        Global.player_script = this;
+
     }
     private void Start()
     {
@@ -52,6 +57,12 @@ public class PlayerMove : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
+
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    Global.SelAllLampOn();
+        //}
+
         _direction_x = Input.GetAxis("Horizontal");
         _direction_z = Input.GetAxis("Vertical");
         doublespeed = Input.GetKey(KeyCode.LeftShift);

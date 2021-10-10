@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamagable
@@ -15,7 +13,11 @@ public class Enemy : MonoBehaviour, IDamagable
     bool moving;
     bool rotating;
 
+    bool player_found;
+
     public float speed = 50;
+    
+    float time_to_attack;
 
     public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
@@ -36,6 +38,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Awake()
     {
+        time_to_attack = 0;
+        player_found = false;
         _rb = GetComponent<Rigidbody>();
         _rb.mass = Random.Range(50f, 80f);
         moving = false;
@@ -61,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
             next_destination_preset = true;
         }
+
     }
 
     void MoveToNextDestination()
@@ -94,10 +99,61 @@ public class Enemy : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        if (!next_destination_preset)
+        if (time_to_attack > 0) time_to_attack -= Time.deltaTime;
+        if (!next_destination_preset && !player_found)
         {
             TryNextDesination();
         }
+    }
+
+    void TryToPlayerDestination()
+    {
+        bool new_player_found = false;
+        MapPoint current_mappoint = World.GetMapPosition(transform.position);
+        MapRoom current_room = current_mappoint.mapRoom;
+
+        if (Global.player != null)
+        {
+            float minx = current_room.x1 * Settings.CellWidth - 1f;
+            float maxx = current_room.x2 * Settings.CellWidth + 1f;
+            float miny = current_room.y1 * Settings.CellHeight - 1f;
+            float maxy = current_room.y2 * Settings.CellHeight + 1f;
+
+            if (Global.IsInterval(Global.player.transform.position.x, minx, maxx) && Global.IsInterval(Global.player.transform.position.z, miny, maxy))
+            {
+                //игрок внутри комнаты
+                next_destination = Global.player.transform.position;
+                next_destination_preset = true;
+                new_player_found = true;
+            }
+        }
+
+        if (new_player_found)
+        {
+            player_found = true;
+            Vector3 destination = Global.player.transform.position - transform.position;
+            if (destination.magnitude < 1f)
+            {
+                next_destination = transform.position; // останавливаемся
+                next_destination_preset = false;
+                if (time_to_attack <= 0)
+                {
+                    Global.player_script.SetDamage(transform.position, Global.player.transform.position, 1f);
+                    time_to_attack = 1f;
+                    World.PlayClip(Global.player.transform, 4);
+                }
+            }
+                
+        }
+        else
+        {
+            if (player_found) 
+            {
+                player_found = false;
+                next_destination_preset = false;
+            }
+        }
+
     }
 
     private void FixedUpdate()
@@ -106,6 +162,7 @@ public class Enemy : MonoBehaviour, IDamagable
         {
             MoveToNextDestination();
         }
+        TryToPlayerDestination();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -135,6 +192,14 @@ public class Enemy : MonoBehaviour, IDamagable
     private void OnDestroy()
     {
         Global.enemies.Remove(this);
+        if (Global.enemies.Count == 0)
+        {
+            if (Global.player != null) 
+            {
+                World.PlayClip(Global.player.transform, 5); // враги кончились
+                Global.SelAllLampOn();
+            } 
+        }
         Destroy(this);
     }
 }
