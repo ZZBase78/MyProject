@@ -19,18 +19,19 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
-        foreach(Transform damage_point in damage_points)
-        {
-            if (damage_point == null) continue; // не ясно, как может выполянтся метод setdamage если нет damage_point, видимо объект был уничтожен, как тогда выполняется скрипт
-            Vector3 _dir = from_position - damage_point.position;
-            if (Physics.Raycast(damage_point.position, _dir, out RaycastHit hitInfo, _dir.magnitude))
-            {
-                if (Mathf.Abs(hitInfo.distance - _dir.magnitude) <= 0.20f)
-                {
-                    Destroy(gameObject); return;
-                }
-            }
-        }
+        //foreach(Transform damage_point in damage_points)
+        //{
+        //    if (damage_point == null) continue; // не ясно, как может выполянтся метод setdamage если нет damage_point, видимо объект был уничтожен, как тогда выполняется скрипт
+        //    Vector3 _dir = from_position - damage_point.position;
+        //    if (Physics.Raycast(damage_point.position, _dir, out RaycastHit hitInfo, _dir.magnitude))
+        //    {
+        //        if (Mathf.Abs(hitInfo.distance - _dir.magnitude) <= 0.20f)
+        //        {
+        //            Destroy(gameObject); return;
+        //        }
+        //    }
+        //}
+        Destroy(gameObject);
     }
 
     private void Awake()

@@ -32,7 +32,7 @@ public class Enemy2Spawner : MonoBehaviour
     {
         Global.enemy2Spawner = this;
         current_index_spawn = 0;
-        max_enemy = 100;
+        max_enemy = 10;
         on = true;
     }
     // Start is called before the first frame update

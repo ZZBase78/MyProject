@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7788250238660477631}
   m_Layer: 0
   m_Name: LampBase1
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7788250238747936743}
   m_Layer: 0
   m_Name: LampBase2
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 7788250238791960491}
   m_Layer: 0
   m_Name: LampBase3
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 7788250238804071338}
   m_Layer: 0
   m_Name: RotateHeadLamp3
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 7788250238919394505}
   m_Layer: 0
   m_Name: Static
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 7788250239117946908}
   m_Layer: 0
   m_Name: LegBase3
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 7788250239125242057}
   m_Layer: 0
   m_Name: SmallGunEndPosition
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 7788250239163228117}
   m_Layer: 0
   m_Name: Leg1
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 7788250239211941624}
   m_Layer: 0
   m_Name: BigGun
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 7788250239252156439}
   m_Layer: 0
   m_Name: RotateCenter
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 7788250239272949516}
   m_Layer: 0
   m_Name: GunLight
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 7788250239343080264}
   m_Layer: 0
   m_Name: RotateGun
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 7788250239389439497}
   m_Layer: 0
   m_Name: Turrel
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 7788250239573392136}
   m_Layer: 0
   m_Name: LegBase2
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 7788250239579842330}
   m_Layer: 0
   m_Name: Audio2
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 7788250239654192127}
   m_Layer: 0
   m_Name: RotateHeadLamp2
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 7788250239746135558}
   m_Layer: 0
   m_Name: Audio4
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 7788250239748854926}
   m_Layer: 2
   m_Name: FindTargetControl
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1590,7 +1590,7 @@ SphereCollider:
   m_GameObject: {fileID: 7788250239748854912}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 7788250239757420286}
   m_Layer: 0
   m_Name: SmallGunStartPosition
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1635,7 +1635,7 @@ GameObject:
   - component: {fileID: 7788250239776668510}
   m_Layer: 0
   m_Name: RotateBase
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1671,7 +1671,7 @@ GameObject:
   - component: {fileID: 7788250239818840005}
   m_Layer: 0
   m_Name: Leg2
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1767,7 +1767,7 @@ GameObject:
   - component: {fileID: 7788250239824983020}
   m_Layer: 0
   m_Name: LegBase1
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 7788250239846646778}
   m_Layer: 0
   m_Name: RotateHead
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 7788250239885451274}
   m_Layer: 0
   m_Name: BulletSpawn
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1990,7 +1990,7 @@ GameObject:
   - component: {fileID: 7788250239934150604}
   m_Layer: 0
   m_Name: TurrelBase
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2085,7 +2085,7 @@ GameObject:
   - component: {fileID: 7788250239962265155}
   m_Layer: 0
   m_Name: SmallGun
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2181,7 +2181,7 @@ GameObject:
   - component: {fileID: 7788250239962411358}
   m_Layer: 0
   m_Name: RotateHeadLamp1
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2273,7 +2273,7 @@ GameObject:
   - component: {fileID: 7788250239966635282}
   m_Layer: 0
   m_Name: Controls
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2305,7 +2305,7 @@ GameObject:
   - component: {fileID: 7788250239990235105}
   m_Layer: 0
   m_Name: Audio1
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2431,7 +2431,7 @@ GameObject:
   - component: {fileID: 7788250240266877835}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2466,7 +2466,7 @@ GameObject:
   - component: {fileID: 7788250240608912141}
   m_Layer: 0
   m_Name: Audio3
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2595,7 +2595,7 @@ GameObject:
   - component: {fileID: 7788250240613731784}
   m_Layer: 0
   m_Name: Leg3
-  m_TagString: Untagged
+  m_TagString: Turrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

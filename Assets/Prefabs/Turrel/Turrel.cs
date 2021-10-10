@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turrel : MonoBehaviour
+public class Turrel : MonoBehaviour, IDamagable
 {
 
     public MapTurrel mapTurrel;
@@ -20,6 +20,10 @@ public class Turrel : MonoBehaviour
     public Vector3 target;
     public bool target_found;
 
+    public void SetDamage(Vector3 form_position, Vector3 to_position, float damage)
+    {
+        Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {

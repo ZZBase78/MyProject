@@ -224,7 +224,7 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if ((status == Status.Armed) && (other.CompareTag("Enemy") || other.CompareTag("Player")))
+        if ((status == Status.Armed) && ((other.CompareTag("Enemy") || (other.CompareTag("Turrel"))) || other.CompareTag("Player")))
         {
             ChangeStatus(Status.PrepareToBoom);
         }
