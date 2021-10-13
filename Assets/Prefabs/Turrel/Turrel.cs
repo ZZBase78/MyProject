@@ -20,6 +20,10 @@ public class Turrel : MonoBehaviour, IDamagable
     public Vector3 target;
     public bool target_found;
 
+    public void SetExplosionDamage(Vector3 form_position, Vector3 to_position, float damage)
+    {
+        SetDamage(form_position, to_position, damage);
+    }
     public void SetDamage(Vector3 form_position, Vector3 to_position, float damage)
     {
         Destroy(gameObject);

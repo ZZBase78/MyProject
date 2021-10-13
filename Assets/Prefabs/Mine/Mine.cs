@@ -203,7 +203,7 @@ public class Mine : MonoBehaviour
         {
             if ((i != null) && (transform != null) && (i.ToString() != "null"))
             {
-                i.SetDamage(transform.position, Vector3.zero, 1000);
+                i.SetExplosionDamage(transform.position, Vector3.zero, 1000);
             }
         }
 

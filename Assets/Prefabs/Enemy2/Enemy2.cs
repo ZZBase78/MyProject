@@ -9,6 +9,8 @@ public class Enemy2 : MonoBehaviour, IDamagable
     int maxhealth = 255;
     int currenthealth;
 
+    public GameObject pointToExplosion;
+
     public MeshRenderer capsula_renderer;
 
     public Vector3[] patrolpoint;
@@ -21,8 +23,29 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     float time_to_damage;
 
+    bool move_to_player; // признак что идет преследования игрока
 
-    //Rigidbody _rb;
+    Rigidbody _rb;
+
+    bool waitingInvokeToEndMoveToPlayer; // признак ожидания выполнения метода Invoke, для отключения преследования игрока
+
+    void AfterExplosion()
+    {
+        if (this.ToString() == "null") return;
+        _rb.isKinematic = true; //включаем кинематику
+        agent.enabled = true; // включаем агента
+    }
+
+    public void SetExplosionDamage(Vector3 form_position, Vector3 to_position, float damage)
+    {
+        _rb.isKinematic = false; // отключаем кинематику для реализации отдачи от взрыва
+        agent.enabled = false; //отключае агента
+        Vector3 explosion_direction = (pointToExplosion.transform.position - form_position).normalized;
+        _rb.AddForce(explosion_direction * 300f);
+        Invoke("AfterExplosion", 2f); //установим кинематику, т.к. иначе мешает передвижению агента
+
+        SetDamage(form_position, to_position, damage);
+    }
 
     public void SetDamage(Vector3 form_position, Vector3 to_position, float damage)
     {
@@ -62,10 +85,11 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     private void Awake()
     {
+        move_to_player = false;
         time_to_damage = 0;
         currenthealth = maxhealth;
         agent = GetComponent<NavMeshAgent>();
-        //_rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
     // Start is called before the first frame update
     void Start()
@@ -131,13 +155,23 @@ public class Enemy2 : MonoBehaviour, IDamagable
     void NavigateToPlayer()
     {
         if (navigate_to_player == null) return;
+        if (!agent.enabled) return;
 
         bool pathfound = agent.CalculatePath(navigate_to_player.transform.position, new NavMeshPath());
         if (pathfound)
         {
+            // путь до игрока найден
             agent.SetDestination(navigate_to_player.transform.position);
+            move_to_player = true; // устанавливаем признак что начинаем преследовать игрока
+
         }
                 
+    }
+
+    void EndMoveToPlayer()
+    {
+        waitingInvokeToEndMoveToPlayer = false; // снимаем признак ожидания метода
+        move_to_player = false; // останавливаем преследование
     }
 
     // Update is called once per frame
@@ -145,10 +179,34 @@ public class Enemy2 : MonoBehaviour, IDamagable
     {
         if (time_to_damage > 0) time_to_damage -= Time.deltaTime;
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.enabled && (agent.remainingDistance <= agent.stoppingDistance))
         {
-            indexpatrolpoint = (indexpatrolpoint + 1) % patrolpoint.Length;
-            agent.SetDestination(patrolpoint[indexpatrolpoint]);
+            // достигли точки маршрута
+
+            if (move_to_player) 
+            {
+                //преследовали игрока
+                if (navigate_to_player == null)
+                {
+                    //игрок потерян из виду, достигли последнюю известную точку игрока
+                    if (!waitingInvokeToEndMoveToPlayer) // проверка чтобы каждый раз не запускать Invoke
+                    {
+                        waitingInvokeToEndMoveToPlayer = true;
+                        Invoke("EndMoveToPlayer", 3f); // прекратим преследование через 3 сек
+                    }
+
+                }
+                else
+                {
+                    //игрок виден, продолжаем преследование, ничего не делаем
+                }
+            }
+            else
+            {
+                //патрулируем
+                indexpatrolpoint = (indexpatrolpoint + 1) % patrolpoint.Length;
+                agent.SetDestination(patrolpoint[indexpatrolpoint]);
+            }
         }
 
         FindPlayer();

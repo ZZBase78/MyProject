@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IDamagable
 {
     public void SetDamage(Vector3 form_position, Vector3 to_position, float damage);
+
+    public void SetExplosionDamage(Vector3 form_position, Vector3 to_position, float damage);
 }

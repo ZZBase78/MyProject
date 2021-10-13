@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Bullet
   - Turrel
+  - PointCube
   layers:
   - Default
   - TransparentFX

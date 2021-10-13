@@ -149,6 +149,7 @@ MonoBehaviour:
   rightslide: {fileID: 1160463768900233937}
   wall_texture_id: 0
   door_texture_id: 0
+  open: 0
   audioClip_open: {fileID: 8300000, guid: e924e2a1d1eb5ba4187c21118d45ffb0, type: 3}
   audioClip_close: {fileID: 8300000, guid: bd9c5e8436101bf449439e7e63693782, type: 3}
 --- !u!82 &3848032313033445371
@@ -172,7 +173,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 5
+  MaxDistance: 35
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

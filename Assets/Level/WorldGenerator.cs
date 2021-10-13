@@ -201,10 +201,10 @@ public class WorldGenerator : MyRoot
 
         int index = 1; // счетчик индексов объектов дверей и комнат
 
-        //Первая дверь на входе? всегда открытая
+        //Первая дверь на входе открывается по тригеру
         MapDoor.GetDoorsPairUpDown(Global.startRoom.x1, 0, -1, index, out MapDoor mapDoor1, out MapDoor mapDoor2);
-        mapDoor1.open = true;
-        mapDoor2.open = true;
+        mapDoor1.open = false;
+        mapDoor2.open = false;
         index++;
         Global.map[Global.startRoom.x1, 0].mapRoom.room_id = index;
         Global.map[Global.startRoom.x1, 0].mapRoom.mapDoors.Add(mapDoor1);

@@ -17,7 +17,7 @@ public class DoorUp : MonoBehaviour
     public int door_texture_id;
 
     bool _open;
-    bool open;
+    public bool open;
 
     public AudioClip audioClip_open;
     public AudioClip audioClip_close;

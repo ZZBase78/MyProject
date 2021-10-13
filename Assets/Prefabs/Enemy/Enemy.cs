@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour, IDamagable
     
     float time_to_attack;
 
+    public void SetExplosionDamage(Vector3 form_position, Vector3 to_position, float damage)
+    {
+        SetDamage(form_position, to_position, damage);
+    }
     public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
         //foreach(Transform damage_point in damage_points)
