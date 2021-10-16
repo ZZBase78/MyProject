@@ -29,6 +29,8 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     bool waitingInvokeToEndMoveToPlayer; // признак ожидания выполнения метода Invoke, для отключения преследования игрока
 
+    Animator _anim;
+
     void AfterExplosion()
     {
         if (this.ToString() == "null") return;
@@ -90,6 +92,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
         currenthealth = maxhealth;
         agent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -111,6 +114,18 @@ public class Enemy2 : MonoBehaviour, IDamagable
         }
         indexpatrolpoint = 0;
         agent.SetDestination(patrolpoint[indexpatrolpoint]);
+    }
+
+    public void SetDamageToPlayer()
+    {
+        Vector3 destination = Global.player.transform.position - transform.position;
+        if (destination.magnitude <= 2f)
+        {
+            Global.player_script.SetDamage(transform.position, Vector3.zero, 1);
+            time_to_damage = 1;
+            World.PlayClip(Global.player.transform, 4);
+        }
+
     }
 
     void FindPlayer()
@@ -139,13 +154,14 @@ public class Enemy2 : MonoBehaviour, IDamagable
             navigate_to_player = Global.player;
             if (destination.magnitude <= 2f)
             {
-                //Удар игрока
-                if (time_to_damage <= 0)
-                {
-                    Global.player_script.SetDamage(transform.position, Vector3.zero, 1);
-                    time_to_damage = 1;
-                    World.PlayClip(Global.player.transform, 4);
-                }
+                _anim.SetTrigger("Attack");
+                ////Удар игрока
+                //if (time_to_damage <= 0)
+                //{
+                //    Global.player_script.SetDamage(transform.position, Vector3.zero, 1);
+                //    time_to_damage = 1;
+                //    World.PlayClip(Global.player.transform, 4);
+                //}
                 
             }
         }
@@ -154,7 +170,10 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     void NavigateToPlayer()
     {
-        if (navigate_to_player == null) return;
+        if (navigate_to_player == null)
+        {
+            return;
+        }
         if (!agent.enabled) return;
 
         bool pathfound = agent.CalculatePath(navigate_to_player.transform.position, new NavMeshPath());
@@ -163,7 +182,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
             // путь до игрока найден
             agent.SetDestination(navigate_to_player.transform.position);
             move_to_player = true; // устанавливаем признак что начинаем преследовать игрока
-
+            _anim.SetBool("Armed", true);
         }
                 
     }
@@ -172,6 +191,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
     {
         waitingInvokeToEndMoveToPlayer = false; // снимаем признак ожидания метода
         move_to_player = false; // останавливаем преследование
+        _anim.SetBool("Armed", false);
     }
 
     // Update is called once per frame
@@ -198,7 +218,10 @@ public class Enemy2 : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    //игрок виден, продолжаем преследование, ничего не делаем
+                    Vector3 diretion = navigate_to_player.transform.position - transform.position;
+                    Quaternion q_direction = Quaternion.LookRotation(diretion);
+                    //игрок виден, Достигли игрока, нужно контролировать только поворот в сторону игрока
+                    transform.localRotation = Quaternion.RotateTowards(transform.rotation, q_direction, 90f * Time.deltaTime);
                 }
             }
             else

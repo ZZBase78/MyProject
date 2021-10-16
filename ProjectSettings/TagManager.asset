@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Turrel
   - PointCube
+  - NoDamage
   layers:
   - Default
   - TransparentFX

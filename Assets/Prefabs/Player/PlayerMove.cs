@@ -97,15 +97,18 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
         if (Physics.Raycast(bullet_spawn.transform.position, bullet_spawn.transform.forward, out RaycastHit hitinfo, 100f))
         {
-            IDamagable i = hitinfo.transform.GetComponentInParent<IDamagable>();
-            if (i != null)
+            if (!hitinfo.collider.CompareTag("NoDamage"))
             {
-                //Debug.Log("Попал" + hitinfo.transform);
-                i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 10f);
-            }
-            else
-            {
-                //Debug.Log("Не Попал");
+                IDamagable i = hitinfo.transform.GetComponentInParent<IDamagable>();
+                if (i != null)
+                {
+                    //Debug.Log("Попал" + hitinfo.transform);
+                    i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 10f);
+                }
+                else
+                {
+                    //Debug.Log("Не Попал");
+                }
             }
         }
     }
