@@ -28,13 +28,13 @@ public class Camera_3d : MonoBehaviour
     public void TurnOn()
     {
         _camera.enabled = true;
-        _audioListener.enabled = true;
+        //_audioListener.enabled = true;
     }
 
     public void TurnOff()
     {
         _camera.enabled = false;
-        _audioListener.enabled = false;
+        //_audioListener.enabled = false;
     }
 
     void GetPlayer()
@@ -53,11 +53,29 @@ public class Camera_3d : MonoBehaviour
 
     bool CheckDirection(Vector3 from, Vector3 direction, float distance)
     {
-        if (Physics.Raycast(from, direction, out RaycastHit hit, distance))
+
+        RaycastHit[] hits = Physics.RaycastAll(from, direction, distance);
+
+        float min_distance = float.MaxValue;
+        Vector3 point = from;
+        bool obstacle_found = false;
+        foreach (RaycastHit hit in hits)
         {
-            if (hit.distance >= 2f)
+            if (hit.transform.CompareTag("Player")) continue;
+            if (hit.transform.CompareTag("Enemy")) continue;
+            if (hit.distance < min_distance)
             {
-                target_position = hit.point;
+                min_distance = hit.distance;
+                point = hit.point;
+                obstacle_found = true;
+            }
+        }
+
+        if (obstacle_found)
+        {
+            if (min_distance >= 2f)
+            {
+                target_position = point;
                 return true;
             }
         }
@@ -66,7 +84,23 @@ public class Camera_3d : MonoBehaviour
             target_position = from + direction.normalized * distance;
             return true;
         }
+
         return false;
+
+        //if (Physics.Raycast(from, direction, out RaycastHit hit, distance))
+        //{
+        //    if (hit.distance >= 2f)
+        //    {
+        //        target_position = hit.point;
+        //        return true;
+        //    }
+        //}
+        //else
+        //{
+        //    target_position = from + direction.normalized * distance;
+        //    return true;
+        //}
+        //return false;
     }
 
     void FindPosition()
@@ -75,8 +109,9 @@ public class Camera_3d : MonoBehaviour
 
         Vector3 look_at_position = player.transform.position + Vector3.up * 1.5f;
         Vector3 player_forward = player.transform.forward;
-        player_forward.x = 0;
-        player_forward.z = 0;
+        //player_forward.x = 0;
+        player_forward.y = 0;
+        //player_forward.z = 0;
         player_forward = player_forward.normalized;
 
         Vector3 direction;
@@ -91,6 +126,9 @@ public class Camera_3d : MonoBehaviour
         if (CheckDirection(look_at_position, direction, 10f)) return;
 
         direction = (-player_forward);
+        if (CheckDirection(look_at_position, direction, 10f)) return;
+
+        direction = Vector3.up + player_forward * (-0.05f); //0.05 чтобы была правильная ориентация камеры
         if (CheckDirection(look_at_position, direction, 10f)) return;
 
         direction = (player.transform.right + Vector3.up);
@@ -111,7 +149,7 @@ public class Camera_3d : MonoBehaviour
 
     void MoveCamera()
     {
-        transform.position = Vector3.Lerp(transform.position, target_position, 5f * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, target_position, 4f * Time.deltaTime);
     }
 
     // Update is called once per frame

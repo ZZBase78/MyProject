@@ -37,10 +37,12 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     public GameObject main_camera;
 
+    Camera maincamera_component;
+
     public void TurnCamera(bool value)
     {
         main_camera.GetComponent<Camera>().enabled = value;
-        main_camera.GetComponent<AudioListener>().enabled = value;
+        //main_camera.GetComponent<AudioListener>().enabled = value;
         main_camera.GetComponent<CrossFire>().enabled = value;
     }
 
@@ -58,6 +60,8 @@ public class PlayerMove : MonoBehaviour, IDamagable
         health = 1000;
         Global.player = gameObject;
         Global.player_script = this;
+
+        maincamera_component = main_camera.GetComponent<Camera>();
 
     }
     private void Start()
@@ -80,7 +84,11 @@ public class PlayerMove : MonoBehaviour, IDamagable
         _direction_z = Input.GetAxis("Vertical");
         doublespeed = Input.GetKey(KeyCode.LeftShift);
 
-        _fire = _fire || Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonDown(0) && maincamera_component.enabled)
+        {
+            _fire = true;
+        }
+        //_fire = _fire || Input.GetMouseButtonDown(0);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
