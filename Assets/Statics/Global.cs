@@ -5,6 +5,8 @@ using UnityEngine;
 public static class Global
 {
 
+    public static GameObject drob_spawner;
+
     public static List<MapTurrel> mapTurrels;
 
     public static MapPoint[,] map;

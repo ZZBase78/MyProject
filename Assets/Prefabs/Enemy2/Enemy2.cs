@@ -54,7 +54,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
         if (gameObject == null) return;
         //Vector3 direction = (to_position - form_position).normalized;
         //_rb.AddForce(direction * damage, ForceMode.Impulse);
-        currenthealth = currenthealth - 200;
+        currenthealth = currenthealth - (int)damage;
         if (currenthealth < 0) currenthealth = 0;
         capsula_renderer.material.color = new Color(((float)maxhealth - currenthealth) / 255, (float)currenthealth / 255, (float)currenthealth / 255);
         if (currenthealth == 0)

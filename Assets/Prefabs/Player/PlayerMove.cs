@@ -39,6 +39,36 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     Camera maincamera_component;
 
+    bool drob_bust;
+    bool drob_bust_sound1_played;
+    bool drob_bust_sound2_played;
+    GameObject tiktak;
+
+    void EndDrobBust()
+    {
+        if (tiktak != null) Destroy(tiktak);
+        drob_bust = false;
+        if (!drob_bust_sound2_played)
+        {
+            drob_bust_sound2_played = true;
+            World.PlayClip(transform, 7); // damn
+        }
+    }
+    public void Drob_pickup()
+    {
+        drob_bust = true;
+        if (!drob_bust_sound1_played)
+        {
+            drob_bust_sound1_played = true;
+            World.PlayClip(transform, 6); // i like big gun
+        }
+        tiktak = new GameObject();
+        tiktak.transform.position = transform.position;
+        tiktak.transform.parent = transform;
+        World.PlayClip(tiktak.transform, 9); // tiktak
+        Invoke("EndDrobBust", 10f);
+    }
+
     public void TurnCamera(bool value)
     {
         main_camera.GetComponent<Camera>().enabled = value;
@@ -57,6 +87,8 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     private void Awake()
     {
+        drob_bust_sound1_played = false;
+        drob_bust = false;
         health = 1000;
         Global.player = gameObject;
         Global.player_script = this;
@@ -117,22 +149,42 @@ public class PlayerMove : MonoBehaviour, IDamagable
     {
         _fire = false;
         //Instantiate(bullet_prefab, bullet_spawn.transform.position, bullet_spawn.transform.rotation);
-        shoot_audio.Play();
+        if (!drob_bust)
+        {
+            shoot_audio.Play();
+        }
+        else
+        {
+            World.PlayClip(transform, 8);
+        }
+        
 
         if (Physics.Raycast(bullet_spawn.transform.position, bullet_spawn.transform.forward, out RaycastHit hitinfo, 100f))
         {
-            if (!hitinfo.collider.CompareTag("NoDamage"))
+            if (!hitinfo.collider.CompareTag("NoDamage") || drob_bust)
             {
                 IDamagable i = hitinfo.transform.GetComponentInParent<IDamagable>();
                 if (i != null)
                 {
                     //Debug.Log("Попал" + hitinfo.transform);
-                    i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 10f);
+                    if (drob_bust)
+                    {
+                        i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 500f);
+                    }
+                    else
+                    {
+                        i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 200f);
+                    }
+                    
                 }
                 else
                 {
                     //Debug.Log("Не Попал");
                 }
+            }
+            else
+            {
+                World.PlayClip(transform, 10);
             }
         }
     }

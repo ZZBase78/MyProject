@@ -187,6 +187,8 @@ public class WorldGenerator : MyRoot
 
         GameObject.Instantiate(Global.prefabs[13]); // enemy 2 spawner
 
+        GameObject.Instantiate(Global.prefabs[15]); // drob_spawner
+
     }
 
     void Generate_Doors()
