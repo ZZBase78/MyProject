@@ -34,7 +34,7 @@ public class MapKey
 
     public void Instantiate()
     {
-        gameObject = GameObject.Instantiate(Global.prefabs[10], World.GetCellPosition(x, y), Quaternion.identity);
+        gameObject = GameObject.Instantiate(Global.prefabs[10], World.GetCellPosition(x, y) + Vector3.up * 0.350f, Quaternion.identity);
         Key key = gameObject.GetComponent<Key>();
         key.mapKey = this;
     }
