@@ -63,6 +63,11 @@ public class Enemy2 : MonoBehaviour, IDamagable
             Global.Enemy2_killed++;
             Destroy(this);
         }
+        else
+        {
+            navigate_to_player = Global.player;
+            NavigateToPlayer();
+        }
     }
 
     public Vector3 GetRandomPoint()

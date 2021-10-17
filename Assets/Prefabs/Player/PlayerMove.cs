@@ -175,7 +175,7 @@ public class PlayerMove : MonoBehaviour, IDamagable
                     }
                     else
                     {
-                        i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 200f);
+                        i.SetDamage(bullet_spawn.transform.position, hitinfo.point, 100f);
                     }
                     
                 }
