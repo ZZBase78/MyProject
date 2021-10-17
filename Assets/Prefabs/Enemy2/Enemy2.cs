@@ -119,7 +119,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
     public void SetDamageToPlayer()
     {
         Vector3 destination = Global.player.transform.position - transform.position;
-        if (destination.magnitude <= 2f)
+        if (destination.magnitude <= 2.5f)
         {
             Global.player_script.SetDamage(transform.position, Vector3.zero, 1);
             time_to_damage = 1;
@@ -140,19 +140,20 @@ public class Enemy2 : MonoBehaviour, IDamagable
         if ((angle > 90) && (destination.magnitude > 3f)) return; //игрок вне угла видимости если расстояние более 3м, при меньшем расстоянии угол зрения не иммет значения
 
         bool obstacle_found = false;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, destination, destination.magnitude);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position + Vector3.up, destination, destination.magnitude); //на метр вше источник, т.к. опирается в лестницу
         foreach(RaycastHit hit in hits)
         {
             if (hit.transform.tag == "Enemy") continue;
             if (hit.transform.tag == "Player") continue;
             obstacle_found = true;
+            //Debug.Log(name + ": obstacle_found: " + hit.collider);
             break;
         }
 
         if (!obstacle_found)
         {
             navigate_to_player = Global.player;
-            if (destination.magnitude <= 2f)
+            if (destination.magnitude <= 2.5f)
             {
                 _anim.SetTrigger("Attack");
                 ////Удар игрока
@@ -184,6 +185,10 @@ public class Enemy2 : MonoBehaviour, IDamagable
             move_to_player = true; // устанавливаем признак что начинаем преследовать игрока
             _anim.SetBool("Armed", true);
         }
+        else
+        {
+            //Debug.Log(name + ": Path to player is not found");
+        }
                 
     }
 
@@ -209,6 +214,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
                 if (navigate_to_player == null)
                 {
                     //игрок потерян из виду, достигли последнюю известную точку игрока
+                    //Debug.Log(name + ": игрок потерян из виду, достигли последнюю известную точку игрока");
                     if (!waitingInvokeToEndMoveToPlayer) // проверка чтобы каждый раз не запускать Invoke
                     {
                         waitingInvokeToEndMoveToPlayer = true;
