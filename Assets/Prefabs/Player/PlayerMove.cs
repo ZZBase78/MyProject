@@ -151,11 +151,13 @@ public class PlayerMove : MonoBehaviour, IDamagable
         //Instantiate(bullet_prefab, bullet_spawn.transform.position, bullet_spawn.transform.rotation);
         if (!drob_bust)
         {
+            shoot_audio.clip = Global.clips[11];
             shoot_audio.Play();
         }
         else
         {
-            World.PlayClip(transform, 8);
+            shoot_audio.clip = Global.clips[8];
+            shoot_audio.Play();
         }
         
 
