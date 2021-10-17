@@ -35,6 +35,15 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     public int health;
 
+    public GameObject main_camera;
+
+    public void TurnCamera(bool value)
+    {
+        main_camera.GetComponent<Camera>().enabled = value;
+        main_camera.GetComponent<AudioListener>().enabled = value;
+        main_camera.GetComponent<CrossFire>().enabled = value;
+    }
+
     public void SetExplosionDamage(Vector3 form_position, Vector3 to_position, float damage)
     {
         SetDamage(form_position, to_position, damage);
@@ -86,6 +95,13 @@ public class PlayerMove : MonoBehaviour, IDamagable
         {
             _jump = true;
             jumpforce = 3;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            bool current = main_camera.GetComponent<Camera>().enabled;
+            TurnCamera(!current);
+            if (current) Global.camera_3d.TurnOn(); else Global.camera_3d.TurnOff();
         }
     }
 

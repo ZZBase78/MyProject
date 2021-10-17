@@ -636,6 +636,8 @@ MonoBehaviour:
   spot_light: {fileID: 2435322721156295418}
   spot_light_audio: {fileID: 3366224011560186990}
   mine_spawn: {fileID: 8655521845677256738}
+  health: 0
+  main_camera: {fileID: 7475960107776234634}
 --- !u!114 &4323796268498390696
 MonoBehaviour:
   m_ObjectHideFlags: 0

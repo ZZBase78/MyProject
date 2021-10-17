@@ -38,6 +38,8 @@ public static class Global
 
     public static List<GameObject> lamps;
 
+    public static Camera_3d camera_3d;
+
     public static void SelAllLampOn()
     {
         if (lamps == null) return;
