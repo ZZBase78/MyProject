@@ -95,6 +95,12 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
         maincamera_component = main_camera.GetComponent<Camera>();
 
+        Global.game_paused = false;
+
+        Global.Cursor_Off();
+
+        Global.SetCameraPixelValues();
+
     }
     private void Start()
     {
@@ -107,6 +113,8 @@ public class PlayerMove : MonoBehaviour, IDamagable
     void Update()
     {
 
+        if (Global.game_paused) return;
+
         //if (Input.GetKeyDown(KeyCode.L))
         //{
         //    Global.SelAllLampOn();
@@ -115,6 +123,11 @@ public class PlayerMove : MonoBehaviour, IDamagable
         _direction_x = Input.GetAxis("Horizontal");
         _direction_z = Input.GetAxis("Vertical");
         doublespeed = Input.GetKey(KeyCode.LeftShift);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Global.SetPauseGame(true);
+        }
 
         if (Input.GetMouseButtonDown(0) && maincamera_component.enabled)
         {
@@ -142,6 +155,7 @@ public class PlayerMove : MonoBehaviour, IDamagable
             bool current = main_camera.GetComponent<Camera>().enabled;
             TurnCamera(!current);
             if (current) Global.camera_3d.TurnOn(); else Global.camera_3d.TurnOff();
+            Global.SetCameraPixelValues();
         }
     }
 
@@ -186,7 +200,7 @@ public class PlayerMove : MonoBehaviour, IDamagable
             }
             else
             {
-                World.PlayClip(transform, 10);
+                World.PlayClip(hitinfo.transform, 10);
             }
         }
     }
@@ -211,6 +225,8 @@ public class PlayerMove : MonoBehaviour, IDamagable
 
     private void FixedUpdate()
     {
+        if (Global.game_paused) return;
+
         //Vector3 direction = new Vector3(_direction_x, 0, _direction_z);
 
         //_rb.AddRelativeForce(direction * speed);

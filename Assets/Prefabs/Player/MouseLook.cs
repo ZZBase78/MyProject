@@ -14,6 +14,11 @@ public class MouseLook : MonoBehaviour
     public float min_y_euler;
     public float max_y_euler;
 
+    private void Awake()
+    {
+        Global.mouse_speed = 5000f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +29,17 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
 
+        if (Global.game_paused) return;
+
         if (enable_X)
         {
-            float rotation_x = Input.GetAxis("Mouse X") * 20;
+            float rotation_x = Input.GetAxis("Mouse X") * Global.mouse_speed / Global.camera_pixel_width;
             transform.Rotate(0, rotation_x, 0);
         }
 
         if (enable_Y)
         {
-            float rotation_y = -Input.GetAxis("Mouse Y") * 20;
+            float rotation_y = -Input.GetAxis("Mouse Y") * Global.mouse_speed / Global.camera_pixel_height;
 
             if (enable_limit_y)
             {

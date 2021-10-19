@@ -13,6 +13,8 @@ public class CrossFire : MonoBehaviour
 
     void Update()
     {
+        if (Global.game_paused) return;
+
         drawing_texture = crosshairTexture;
 
         DoorUp door = null;
@@ -66,6 +68,8 @@ public class CrossFire : MonoBehaviour
     }
     void OnGUI()
     {
+        if (Global.game_paused) return;
+
         GUI.Label(r, drawing_texture);
     }
 }

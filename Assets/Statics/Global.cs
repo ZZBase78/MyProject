@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Global
 {
+    public static bool game_paused;
 
     public static GameObject drob_spawner;
 
@@ -42,11 +43,55 @@ public static class Global
 
     public static Camera_3d camera_3d;
 
+    public static GameObject pause_menu;
+
+    public static int camera_pixel_width;
+    public static int camera_pixel_height;
+    public static float mouse_speed;
+
+
+    public static void SetCameraPixelValues()
+    {
+        camera_pixel_width = Camera.main.pixelWidth;
+        camera_pixel_height = Camera.main.pixelHeight;
+    }
+
+    public static void SetPauseGame(bool value)
+    {
+        if (value == true)
+        {
+            Cursor_On();
+            Global.game_paused = true;
+            pause_menu = GameObject.Instantiate(Global.prefabs[16]);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Cursor_Off();
+            Global.game_paused = false;
+            GameObject.Destroy(pause_menu);
+            Time.timeScale = 1;
+        }
+    }
+
+    public static void Cursor_On()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public static void Cursor_Off()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     public static void SelAllLampOn()
     {
         if (lamps == null) return;
         foreach (GameObject lamp_go in lamps)
         {
+            if (lamp_go == null) continue;
             Lamp lamp_script = lamp_go.GetComponent<Lamp>();
             if (lamp_script != null)
             {
