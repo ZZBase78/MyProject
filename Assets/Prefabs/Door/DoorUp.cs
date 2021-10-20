@@ -51,12 +51,17 @@ public class DoorUp : MonoBehaviour
         time_to_autoclose = 5;
     }
 
+    private void Awake()
+    {
+        _audio_source = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _open = false;
         open = false;
-        _audio_source = GetComponent<AudioSource>();
+        
 
         World.SetTextureXY(center, wall_texture_id);
         World.SetTextureXY(left, wall_texture_id);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu_Pause : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class Menu_Pause : MonoBehaviour
 
     public GameObject[] secondarypanels;
 
+    public void Click_MainMenu()
+    {
+        Global.SetPauseGame(false);
+        Global.Cursor_On();
+        SceneManager.LoadScene(0);
+    }
     public void SetFullScreen()
     {
         Screen.fullScreen = fullscreen.GetComponent<Toggle>().isOn;
@@ -88,5 +95,13 @@ public class Menu_Pause : MonoBehaviour
     public void Click_Quit()
     {
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Click_Continue();
+        }
     }
 }

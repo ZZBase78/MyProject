@@ -49,6 +49,8 @@ public static class Global
     public static int camera_pixel_height;
     public static float mouse_speed;
 
+    public static GameObject canvas_console;
+
 
     public static void SetCameraPixelValues()
     {
@@ -63,6 +65,7 @@ public static class Global
             Cursor_On();
             Global.game_paused = true;
             pause_menu = GameObject.Instantiate(Global.prefabs[16]);
+            canvas_console.SetActive(false);
             Time.timeScale = 0;
         }
         else
@@ -70,6 +73,7 @@ public static class Global
             Cursor_Off();
             Global.game_paused = false;
             GameObject.Destroy(pause_menu);
+            canvas_console.SetActive(true);
             Time.timeScale = 1;
         }
     }

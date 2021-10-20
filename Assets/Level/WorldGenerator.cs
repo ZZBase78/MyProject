@@ -83,6 +83,9 @@ public class WorldGenerator : MyRoot
     // Start is called before the first frame update
     void Start()
     {
+
+        //Random.InitState((int)Time.time);
+
         Global.lamps = new List<GameObject>();
 
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour, IDamagable
 {
@@ -83,13 +84,15 @@ public class PlayerMove : MonoBehaviour, IDamagable
     public void SetDamage(Vector3 from_position, Vector3 to_position, float damage)
     {
         health = health - (int)damage;
+
+        if (health <= 0) SceneManager.LoadScene(2);
     }
 
     private void Awake()
     {
         drob_bust_sound1_played = false;
         drob_bust = false;
-        health = 1000;
+        health = Settings.player_max_health;
         Global.player = gameObject;
         Global.player_script = this;
 

@@ -29,10 +29,10 @@ public class ScreenConsole : MonoBehaviour
         GUI.Label(new Rect(Screen.width - 200, Screen.height - 40, 200, 20), "Врагов в лабиринте: " + Global.enemies.Count);
         GUI.Label(new Rect(Screen.width - 200, Screen.height - 20, 200, 20), "Убито на открытом уровне: " + Global.Enemy2_killed);
 
-        if (Global.player != null)
-        {
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 20, 200, 20), "ЗДОРОВЬЕ: " + Global.player_script.health);
-        }
+        //if (Global.player != null)
+        //{
+        //    GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 20, 200, 20), "ЗДОРОВЬЕ: " + Global.player_script.health);
+        //}
 
 
         

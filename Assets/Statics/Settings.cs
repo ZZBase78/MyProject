@@ -10,4 +10,6 @@ public static class Settings
     public static int MaxSizeRoom = 5;
     public static float CellWidth = 3f;
     public static float CellHeight = 3f;
+
+    public static int player_max_health = 100;
 }
