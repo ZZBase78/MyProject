@@ -12,4 +12,6 @@ public static class Settings
     public static float CellHeight = 3f;
 
     public static int player_max_health = 100;
+
+    
 }

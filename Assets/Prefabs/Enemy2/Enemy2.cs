@@ -189,6 +189,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
             agent.SetDestination(navigate_to_player.transform.position);
             move_to_player = true; // устанавливаем признак что начинаем преследовать игрока
             _anim.SetBool("Armed", true);
+            Global.AddDanger(gameObject);
         }
         else
         {
@@ -202,6 +203,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
         waitingInvokeToEndMoveToPlayer = false; // снимаем признак ожидания метода
         move_to_player = false; // останавливаем преследование
         _anim.SetBool("Armed", false);
+        Global.RemoveDanger(gameObject);
     }
 
     // Update is called once per frame
@@ -250,6 +252,7 @@ public class Enemy2 : MonoBehaviour, IDamagable
 
     private void OnDestroy()
     {
+        Global.RemoveDanger(gameObject);
         Destroy(this);
     }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public static class Global
 {
+
+    public static List<GameObject> danger_objects = new List<GameObject>();
+
+    public static GameObject backgroundsound;
+
     public static bool game_paused;
 
     public static GameObject drob_spawner;
@@ -51,7 +56,24 @@ public static class Global
 
     public static GameObject canvas_console;
 
+    public static void AddDanger(GameObject go)
+    {
+        if (!danger_objects.Contains(go)) danger_objects.Add(go);
+    }
+    public static void RemoveDanger(GameObject go)
+    {
+        danger_objects.Remove(go);
+    }
 
+    public static float GetVolumeFromFloat(float value)
+    {
+        return (value * 100f) - 80f; 
+    }
+
+    public static float GetFloatFromVolume(float value)
+    {
+        return (value + 80f) / 100;
+    }
     public static void SetCameraPixelValues()
     {
         camera_pixel_width = Camera.main.pixelWidth;

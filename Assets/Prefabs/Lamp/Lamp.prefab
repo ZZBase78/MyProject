@@ -525,6 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go_light: {fileID: 5504016653775887827}
   go_spotlight: {fileID: 4650438527805589761}
+  mode: 0
 --- !u!82 &2526029966680133684
 AudioSource:
   m_ObjectHideFlags: 0
@@ -534,7 +535,7 @@ AudioSource:
   m_GameObject: {fileID: 5504016654188238365}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6454967015926903235, guid: 0ce256d38f906384cabd5eaa8ee84410, type: 2}
   m_audioClip: {fileID: 8300000, guid: 15e4aec0edbbdc9408dd94066d0af883, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
