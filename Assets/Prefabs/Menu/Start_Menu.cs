@@ -143,4 +143,9 @@ public class Start_Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void LoadScene_SoundVisualizer()
+    {
+        SceneManager.LoadScene(4);
+    }
 }

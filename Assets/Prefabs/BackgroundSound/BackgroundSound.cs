@@ -14,11 +14,10 @@ public class BackgroundSound : MonoBehaviour
     private void Awake()
     {
 
-        SceneManager.sceneLoaded += this.OnLoadCallback;
-
         if (Global.backgroundsound == null)
         {
             Global.backgroundsound = gameObject;
+            SceneManager.sceneLoaded += this.OnLoadCallback;
         }
         else
         {
@@ -96,7 +95,7 @@ public class BackgroundSound : MonoBehaviour
             if (!danger.isPlaying) danger.Play();
             _anim.SetBool("Danger", false);
         }
-        if (level == 2 || level == 3)
+        if (level == 2 || level == 3 || level == 4)
         {
             if (slow.isPlaying) slow.Stop();
             if (danger.isPlaying) danger.Stop();

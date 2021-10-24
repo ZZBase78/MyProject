@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: e6ae8d2eb2708f2409df7cf9e0454885
+  - enabled: 1
+    path: Assets/Scenes/AudioVisualizer/AudioVusializer.unity
+    guid: 8487a3ecf01d1054ab43e208f59f0579
   m_configObjects: {}
